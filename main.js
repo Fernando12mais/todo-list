@@ -2,6 +2,18 @@ const todoContainer = document.querySelector("#todo-items");
 const input = document.querySelector("#input");
 const btnCreate = document.querySelector("#create");
 const form = document.querySelector("#form");
+const inputContainer = document.querySelector("#input-container");
+
+input.addEventListener("focus", () => {
+  const error = document.querySelector("#error");
+
+  if (error) {
+    error.classList.add("fade-out");
+    error.addEventListener("animationend", () => {
+      error.remove();
+    });
+  }
+});
 
 let items = [];
 
@@ -18,7 +30,15 @@ window.addEventListener("load", () => {
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
-  if (!input.value) return;
+  if (!input.value.trim()) {
+    const error = document.createElement("span");
+    error.id = "error";
+    error.append("What is the name of your task?");
+
+    inputContainer.append(error);
+    error.classList.add("fade-in");
+    return;
+  }
   const id = Math.random();
   items.push({ id, item: input.value, isDone: false });
   generateItem({ id, inputValue: input.value });

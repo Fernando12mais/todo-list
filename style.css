@@ -114,6 +114,13 @@ button:active {
 .fade-out {
   animation: fadeOut forwards 0.3s ease-in-out;
 }
+
+#input-container {
+  display: flex;
+  flex-direction: column;
+  color: var(--delete);
+  gap: 0.25rem;
+}
 @keyframes fadeIn {
   from {
     opacity: 0;
