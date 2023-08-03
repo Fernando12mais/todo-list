@@ -113,10 +113,7 @@ function generateItem({ id, inputValue }) {
 
   updateLocalStorage();
 
-  todoContainer.scrollTo({
-    top: todoContainer.scrollHeight,
-    behavior: "smooth",
-  });
+  li.scrollIntoView({ behavior: "smooth" });
 }
 
 function loadItems(items) {
