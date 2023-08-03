@@ -3,5 +3,5 @@
 https://todo-list-theta-weld.vercel.app/
 
 #Start project
-yarn
-yarn dev
+`yarn`
+`yarn dev`
