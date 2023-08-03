@@ -24,6 +24,7 @@ body {
   align-items: center;
   background-color: var(--bg);
   min-height: 100dvh;
+  padding: 1rem;
 }
 
 .container {
@@ -70,6 +71,7 @@ input {
   border-radius: 0.5rem;
   box-shadow: 0px 0px 0.4rem 0px var(--shadow-color);
   border: none;
+  width: 100%;
 }
 
 .done {
