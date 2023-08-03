@@ -4,5 +4,8 @@ https://todo-list-theta-weld.vercel.app/
 
 ## Start project
 
-`yarn`
-`yarn dev`
+# Inside the project folder
+
+run on the terminal `yarn`
+
+run on terminal `yarn dev`
