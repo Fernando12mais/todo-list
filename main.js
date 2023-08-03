@@ -1,5 +1,5 @@
 import { getTheme, setTheme } from "./theme";
-import { createTask } from "./todo-functions";
+import { createTask, loadTasks } from "./todo-functions";
 
 const todoContainer = document.querySelector("#todo-items");
 const input = document.querySelector("#input");
@@ -20,12 +20,7 @@ btnTheme.onclick = () => {
 };
 
 window.onload = () => {
-  const persistedItems = JSON.parse(localStorage.getItem("items"));
-
-  if (persistedItems) {
-    items = persistedItems;
-    loadItems(items);
-  }
+  loadTasks({ container: todoContainer, items });
 };
 
 input.onfocus = () => {

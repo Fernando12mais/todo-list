@@ -1,6 +1,6 @@
 import { setLocalStorageItem } from "./local-storage";
 
-function createTaskElements({ id, value, container, items }) {
+function createTaskElements({ id, value, container, items, loadingItems }) {
   const li = document.createElement("li");
   li.classList.add("item");
   li.classList.add("fade-in");
@@ -21,19 +21,22 @@ function createTaskElements({ id, value, container, items }) {
   li.append(btnDone, task, btnDelete);
   container.append(li);
 
-  items.push({ id, item: value, isDone: false });
+  if (!loadingItems) {
+    items.push({ id, item: value, isDone: false });
 
-  setLocalStorageItem("items", items);
+    setLocalStorageItem("items", items);
+  }
 
   return { li, task, btnDelete, btnDone };
 }
 
-export function createTask({ id, value, container, items }) {
+export function createTask({ id, value, container, items, loadingItems }) {
   const { li, task, btnDelete, btnDone } = createTaskElements({
     id,
     value: value,
     container,
     items,
+    loadingItems,
   });
 
   li.scrollIntoView({ behavior: "smooth" });
@@ -51,7 +54,6 @@ export function createTask({ id, value, container, items }) {
 
   btnDelete.onclick = () => {
     deleteItem(id, items);
-    setLocalStorageItem("items", items);
 
     li.classList.replace("fade-in", "fade-out");
     li.onanimationend = () => {
@@ -77,5 +79,24 @@ export function createTask({ id, value, container, items }) {
 
 export function deleteItem(id, items) {
   items = items.filter((item) => item.id !== id);
-  return items;
+
+  setLocalStorageItem("items", items);
+}
+
+export function loadTasks({ container, items }) {
+  const persistedItems = JSON.parse(localStorage.getItem("items"));
+
+  if (persistedItems?.length) {
+    items.push(...persistedItems);
+
+    items.forEach(({ item, id }) =>
+      createTask({
+        container,
+        id,
+        items,
+        loadingItems: true,
+        value: item,
+      })
+    );
+  }
 }
