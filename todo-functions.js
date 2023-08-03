@@ -88,6 +88,7 @@ export function loadTasks({ container, items }) {
 
   if (persistedItems?.length) {
     items.push(...persistedItems);
+    console.log("tst");
 
     items.forEach(({ item, id }) =>
       createTask({
