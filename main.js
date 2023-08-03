@@ -11,8 +11,6 @@ setTheme();
 btnTheme.onclick = () => {
   const theme = getTheme();
 
-  console.log(theme);
-
   if (theme == "light") {
     setTheme("dark");
   } else {
