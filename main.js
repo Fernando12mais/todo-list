@@ -4,20 +4,20 @@ const btnCreate = document.querySelector("#create");
 const form = document.querySelector("#form");
 const inputContainer = document.querySelector("#input-container");
 
-input.addEventListener("focus", () => {
+input.onfocus = () => {
   const error = document.querySelector("#error");
 
   if (error) {
     error.classList.add("fade-out");
-    error.addEventListener("animationend", () => {
+    error.onanimationend = () => {
       error.remove();
-    });
+    };
   }
-});
+};
 
 let items = [];
 
-window.addEventListener("load", () => {
+window.onload = () => {
   const persistedItems = JSON.parse(localStorage.getItem("items"));
 
   if (persistedItems) {
@@ -26,9 +26,9 @@ window.addEventListener("load", () => {
 
     console.log(items);
   }
-});
+};
 
-form.addEventListener("submit", (event) => {
+form.onsubmit = (event) => {
   event.preventDefault();
   if (!input.value.trim()) {
     const error = document.createElement("span");
@@ -42,7 +42,7 @@ form.addEventListener("submit", (event) => {
   const id = Math.random();
   items.push({ id, item: input.value, isDone: false });
   generateItem({ id, inputValue: input.value });
-});
+};
 
 function deleteItem(id) {
   items = items.filter((item) => item.id !== id);
@@ -56,43 +56,42 @@ function generateItem({ id, inputValue }) {
   const task = document.createElement("input");
   task.value = inputValue;
   task.readOnly = true;
-  task.addEventListener("focus", () => {
+  task.onfocus = () => {
     task.readOnly = false;
-  });
-  task.addEventListener("blur", () => {
+  };
+  task.onblur = () => {
     task.readOnly = true;
-  });
+  };
 
-  task.addEventListener("change", (event) => {
+  task.onchange = (event) => {
     items.forEach((item) => {
       if (item.id == id) {
         item.item = event.target.value;
         updateLocalStorage();
       }
     });
-  });
+  };
 
   const btnDelete = document.createElement("button");
   btnDelete.classList.add("btn-delete");
   btnDelete.append("Delete");
   btnDelete.type = "button";
-
-  btnDelete.addEventListener("click", () => {
+  btnDelete.onclick = () => {
     deleteItem(id);
     updateLocalStorage();
 
-    li.classList.add("fade-out");
-    li.addEventListener("animationend", () => {
+    li.classList.replace("fade-in", "fade-out");
+    li.onanimationend = () => {
       li.remove();
-    });
-  });
+    };
+  };
 
   const btnDone = document.createElement("input");
 
   btnDone.type = "checkbox";
   btnDone.classList.add("btn-done");
 
-  btnDone.addEventListener("click", () => {
+  btnDone.onclick = () => {
     const todoItem = items.find((item) => item.id == id);
     todoItem.isDone = !todoItem.isDone;
 
@@ -105,7 +104,7 @@ function generateItem({ id, inputValue }) {
     }
 
     updateLocalStorage();
-  });
+  };
 
   li.append(btnDone, task, btnDelete);
   todoContainer.append(li);
