@@ -23,8 +23,6 @@ window.onload = () => {
   if (persistedItems) {
     items = persistedItems;
     loadItems(items);
-
-    console.log(items);
   }
 };
 
