@@ -1,6 +1,6 @@
 import { setLocalStorageItem } from "./local-storage";
 
-export function createTaskElements({ id, value, container, items }) {
+function createTaskElements({ id, value, container, items }) {
   const li = document.createElement("li");
   li.classList.add("item");
   li.classList.add("fade-in");
