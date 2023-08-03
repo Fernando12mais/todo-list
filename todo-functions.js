@@ -27,6 +27,10 @@ function createTaskElements({ id, value, container, items, loadingItems }) {
     setLocalStorageItem("items", items);
   }
 
+  if (loadingItems) {
+    items.forEach(({ isDone }) => (btnDone.checked = isDone));
+  }
+
   return { li, task, btnDelete, btnDone };
 }
 
