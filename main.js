@@ -1,8 +1,24 @@
+import { getTheme, setTheme } from "./theme";
+
 const todoContainer = document.querySelector("#todo-items");
 const input = document.querySelector("#input");
-const btnCreate = document.querySelector("#create");
 const form = document.querySelector("#form");
 const inputContainer = document.querySelector("#input-container");
+const btnTheme = document.querySelector("#btn-theme");
+
+setTheme();
+
+btnTheme.onclick = () => {
+  const theme = getTheme();
+
+  console.log(theme);
+
+  if (theme == "light") {
+    setTheme("dark");
+  } else {
+    setTheme("light");
+  }
+};
 
 input.onfocus = () => {
   const error = document.querySelector("#error");
