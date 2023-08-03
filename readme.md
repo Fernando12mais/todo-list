@@ -1,10 +1,10 @@
-## Live demo
+# Live demo
 
 https://todo-list-theta-weld.vercel.app/
 
-## Start project
+# Start project
 
-# Inside the project folder
+## Inside the project folder
 
 run on the terminal `yarn`
 
